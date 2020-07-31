@@ -36,7 +36,8 @@ void main() {
   //   rectCoord = scale(vec2(sin(u_time) + 2.0)) * rectCoord;
   vec2 rectranslate = vec2(cos(u_time), sin(u_time));
   float rectOffset = 0.4; // center is 0.5
-  rectCoord += sin(u_time) * rectranslate * rectOffset;
+
+  rectCoord += sin(u_time) + .02 * rectranslate * rectOffset;
   rectCoord = rotate(u_time) * rectCoord;
   rectCoord += vec2(0.5);
 
@@ -44,19 +45,21 @@ void main() {
   //   rectCoord = scale(vec2(sin(u_time) + 2.0)) * rectCoord;
   vec2 rec2translate = vec2(cos(u_time), sin(u_time));
   float rect2Offset = 0.4;
-  rect2Coord += (sin(u_time) * rec2translate * -rect2Offset);
+  rect2Coord += sin(u_time) * rec2translate * -rect2Offset;
   rect2Coord = rotate(u_time) * rect2Coord;
   rect2Coord += vec2(0.5);
 
   // circle movement
-  // circleCoord -= vec2(0.5);
+  //   circleCoord -= vec2(0.5);
   //   circleCoord = scale(vec2(sin(u_time) + 2.0)) * circleCoord;
-  // circleCoord += vec2(0.5);
+  //   circleCoord += vec2(0.5);
 
   color += vec3(rectshape(rectCoord, squareSideLen));
   color += vec3(rectshape(rect2Coord, squareSideLen));
 
-  // color += vec3(circleshape(circleCoord, 0.1));
+  //   color -= vec3(rectshape(rectCoord, vec2(squareSideLen)));
+
+  //   color += vec3(circleshape(circleCoord, 0.1));
 
   gl_FragColor = vec4(color, 1.0);
 }
